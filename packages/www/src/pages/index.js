@@ -7,7 +7,7 @@ export default props => (
     <Heading as="h1">Hello world!!</Heading>
      <Button 
       sx={{ marginTop: 2}}
-      onClick={() => console.log('click')}
+      onClick={() => alert('click')}
     >Log in</Button>
   </Flex>
   </Container>
