@@ -1,0 +1,12 @@
+{
+  "name": "faunadb-todo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/adinjesuha/faunadb-todo-app.git",
+  "author": "Adin Castro <acastro@agrobiotek.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
