@@ -1,7 +1,9 @@
 {
-  "name": "graphql",
+  "name": "graphql-api",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "https://github.com/adinjesuha/faunadb-todo-app.git",
+  "author": "Adin Castro <acastro@agrobiotek.com>",
   "license": "MIT",
   "dependencies": {
     "apollo-server-lambda": "^2.13.1",
