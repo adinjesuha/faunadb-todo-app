@@ -2,11 +2,19 @@
   "name": "faunadb-todo-app",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "MIT",
   "repository": "https://github.com/adinjesuha/faunadb-todo-app.git",
   "author": "Adin Castro <acastro@agrobiotek.com>",
-  "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@theme-ui/presets": "^0.3.0",
+    "gatsby": "^2.21.37",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "theme-ui": "^0.3.1"
+  }
 }
