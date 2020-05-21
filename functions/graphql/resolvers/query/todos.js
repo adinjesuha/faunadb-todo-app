@@ -1,7 +1,7 @@
-const todos = {};
+const data = require('../../data');
 
-const todosResolver = () => {
-  return Object.values(todos);
+const todos = () => {
+  return Object.values(data);
 };
 
-module.exports = todosResolver;
+module.exports = todos;

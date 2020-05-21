@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 import { Container, Heading, Button, Flex, NavLink  } from 'theme-ui';
-import { IdentityContext } from '../../identity-context'
+import { IdentityContext } from '../../identity-context';
 
 export default props => {
   const { user, identity: netlifyIdentity } = useContext(IdentityContext);
