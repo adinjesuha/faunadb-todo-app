@@ -1,6 +1,9 @@
-import { client, q } from '../../faunabd';
+const { client, q } = require('../../faunabd');
 
-const updateTodoDone = async (_, { id }) => {
+const updateTodoDone = async (_, { id }, { user }) => {
+  if(!user) {
+    throw new Error("Must be authenticated to insert todos");
+  }
   const results = await client.query(
     q.Update(q.Ref(q.Collection("todos"), id), {
       data: {

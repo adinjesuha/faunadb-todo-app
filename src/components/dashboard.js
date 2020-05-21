@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useReducer } from "react";
+import React, { useContext, useRef } from "react";
 import {
   Container,
   Flex,
@@ -9,51 +9,41 @@ import {
   Checkbox,
 } from "theme-ui";
 import { Link } from "@reach/router";
-import { useMutation, useQuery } from 'graphql-hooks';
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { IdentityContext } from "../../identity-context";
 
-const ADD_TODO = `mutation AddTodo($text: String!) {
-  addTodo(text: $text) {
-    id
+const ADD_TODO = gql`
+  mutation AddTodo($text: String!) {
+    addTodo(text: $text) {
+      id
+    }
   }
-}`
+`;
 
-const UPDATE_TODO_DONE = `mutation UpdateTodoDone($id: ID!) {
-  updateTodoDone(id: $id) {
-    text
-    done
+const UPDATE_TODO_DONE = gql`
+  mutation UpdateTodoDone($id: ID!) {
+    updateTodoDone(id: $id) {
+      text
+      done
+    }
   }
-}`
+`;
 
-const GET_TODOS = `query getTodos{
-  todos {
-    id
-    text
-    done
+const GET_TODOS = gql`
+  query GetTodos {
+    todos {
+      id
+      text
+      done
+    }
   }
-}`
-
-const todosReducer = (state, action) => {
-  switch (action.type) {
-    case "addTodo":
-      return [{ done: false, value: action.payload }, ...state];
-    case "toggleTodoDone":
-      const newState = [...state];
-      newState[action.payload] = {
-        done: !state[action.payload].done,
-        value: state[action.payload].value
-      };
-      return newState;
-    default:
-      return state
-  }
-};
+`;
 
 export default () => {
   const { user, identity: netlifyIdentity } = useContext(IdentityContext);
   const inputRef = useRef();
-  const [ addTodo ] = useMutation(ADD_TODO);
-  const [ updateTodoDone ] = useMutation(UPDATE_TODO_DONE);
+  const [addTodo] = useMutation(ADD_TODO);
+  const [updateTodoDone] = useMutation(UPDATE_TODO_DONE);
   const { loading, error, data, refetch } = useQuery(GET_TODOS);
   return(
     <Container>
@@ -76,7 +66,12 @@ export default () => {
         as="form"
         onSubmit={async e => {
           e.preventDefault();
-          await addTodo({variables: { text: inputRef.current.value }});
+          await addTodo({
+            variables: { 
+              text: inputRef.current.value,
+              owmner: user.user_metadata.full_name
+            }
+          });
           inputRef.current.value = "";
           console.log("refetching");
           await refetch();
@@ -99,8 +94,8 @@ export default () => {
               as="li"
               key={todo.id}
               onClick={async () => {
-                console.log("updateTodoDone")
-                await updateTodoDone({variables: { id: todo.id } });
+                console.log("updateTodoDone");
+                await updateTodoDone({ variables: { id: todo.id } });
                 console.log("refetching");
                 await refetch();
               }}
