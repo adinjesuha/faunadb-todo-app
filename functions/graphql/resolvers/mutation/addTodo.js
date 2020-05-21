@@ -1,9 +1,4 @@
-const faunadb = require('faunadb');
-
-const q = faunadb.query;
-const client = new faunadb.Client({
-  secret: `${process.env.FAUNA_API_KEY}`
-});
+import { client, q } from '../../faunabd';
 
 const addTodo = async (_, { text }) => {
   const results = await client.query(
