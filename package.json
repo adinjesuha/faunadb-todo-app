@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@theme-ui/presets": "^0.3.0",
+    "apollo-link-context": "^1.0.20",
     "apollo-server-lambda": "^2.13.1",
+    "faunadb": "^2.14.1",
     "gatsby": "^2.21.37",
     "gatsby-plugin-create-client-paths": "^2.3.1",
     "graphql-hooks": "^4.4.4",

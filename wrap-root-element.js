@@ -12,7 +12,7 @@ const tokens = {
 }
 
 const client = new GraphQLClient({
-  url: '/.netlify/functions/graphql'
+  url: '/.netlify/functions/graphql',
 })
 
 module.exports = ({ element }) => (
