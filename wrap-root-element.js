@@ -17,7 +17,12 @@ const { Provider } = require('./identity-context');
 
 const tokens = {
   ...deep,
-  sizes: { container: 1024 }
+  sizes: { 
+    container: 1024 
+  },
+  fontSizes: [
+    12, 14, 16, 20, 24, 32, 48, 64,
+  ],
 }
 
 const authLink = setContext((_, { headers }) => {

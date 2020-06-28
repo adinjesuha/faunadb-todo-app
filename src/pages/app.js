@@ -1,27 +1,38 @@
 import React, { useContext } from 'react';
 import { Router } from "@reach/router";
-import { Container, Flex, Heading, Button } from "theme-ui";
+import { Heading, Box } from "theme-ui";
 import { IdentityContext } from '../../identity-context';
+
+import Layout from '../components/layout'
 import Dashboard from '../components/dashboard'
 
 const DashLoggedOut = props => {
-  const { identity: netlifyIdentity } = useContext(IdentityContext);
   return(
-    <Container>
-      <Flex sx={{ flexDirection: "column", padding: 3 }}>
-        <Heading as="h1">Get Stuff Done</Heading>
-        <Button
-          sx={{ marginTop: 2 }}
-          onClick={() => {
-            netlifyIdentity.open();
+    <Layout>
+      <Box
+        sx={{
+          textAlign: "center",
+          my: "80px"
+        }}
+      >
+        <Heading 
+          as="h1" 
+          sx={{
+            fontSize: [5,6]
           }}
         >
-          Log In
-        </Button>
-      </Flex>
-    </Container>
+          Must be logged in to continue
+        </Heading>
+      </Box>
+    </Layout>
   )
 }
+
+const DashLoggedIn = () => (
+  <Layout>  
+    <Dashboard />
+  </Layout>
+)
 
 export default props => {
   const { user } = useContext(IdentityContext);
@@ -34,7 +45,7 @@ export default props => {
   }
   return (
     <Router>
-      <Dashboard path="/app" />
+      <DashLoggedIn path="/app" />
     </Router>
   )
 }

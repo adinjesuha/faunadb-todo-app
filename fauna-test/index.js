@@ -31,6 +31,14 @@ async function run(){
   // )
   // console.log(results);
 
+  // const results = await client.query(
+  //   q.Paginate(q.Match(
+  //     q.Index("todos_by_user_donde"), 
+  //     ["0ef75b76-8204-4f37-8caf-fd1a2bb55123", true]
+  //   ))
+  // )
+  // console.log(results);
+
 
 }
 

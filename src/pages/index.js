@@ -1,32 +1,51 @@
-import React, { useContext } from 'react';
-import { Link } from 'gatsby';
-import { Container, Heading, Button, Flex, NavLink  } from 'theme-ui';
-import { IdentityContext } from '../../identity-context';
+import React from 'react';
+import { Heading, Flex, Box } from 'theme-ui';
 
-export default props => {
-  const { user, identity: netlifyIdentity } = useContext(IdentityContext);
+import Layout from '../components/layout';
+import FaunaDB from '../images/fauna_db.png';
+import Netlify from '../images/netlify.png';
 
+export default () => {
   return (
-    <Container>
-      <Flex as="nav">
-        <NavLink as={Link} to="/" p={2}>Home</NavLink>
-        <NavLink as={Link} to={"/app"} p={2}>Dashboard</NavLink>
-        {user && (
-          <NavLink href="#!" p={2}>
-            {user.user_metadata.full_name}
-          </NavLink>
-        )}
-        
-      </Flex>
-      <Flex sx={{ flexDirection: "column", padding: 3}}>
-        <Heading as="h1">Hello world!!</Heading>
-        <Button 
-          sx={{ marginTop: 2}}
-          onClick={() => {
-            netlifyIdentity.open()
+    <Layout>
+      <Box
+        sx={{
+          my: "80px",
+          textAlign: 'center'
+        }}
+      >
+        <Heading 
+          as="h1" 
+          sx={{
+            fontSize: [5,6],
           }}
-        >Log in</Button>
+        >
+          Serverless Todo App with Netlify Functions and FaunaDB
+        </Heading>
+      </Box>
+      <Flex
+        sx={{
+          flexDirection: ["column", "row"],
+          alignItems: "center",
+          justifyContent: "space-around",
+          width: "100%"
+        }}
+      >
+        <Box
+          sx={{
+            width: "300px"
+          }}
+        >
+          <img src={FaunaDB} alt="FaunDB" width="100%"/>
+        </Box>
+        <Box
+          sx={{
+            width: "300px"
+          }}
+        >
+          <img src={Netlify} alt="Netlify" width="100%"/>
+        </Box>
       </Flex>
-    </Container>
+    </Layout>
   )
 }
